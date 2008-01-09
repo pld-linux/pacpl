@@ -5,9 +5,9 @@ Version:	4.0.0
 Release:	0.1
 License:	GPL v3
 Group:		Applications
-Source0:	http://dl.sourceforge.net/paclpl/%{name}-%{version}.tar.bz2
+Source0:	http://dl.sourceforge.net/pacpl/%{name}-%{version}.tar.bz2
 # Source0-md5:	cab1287e4fbe953652f6262130c1da0f
-URL:		http://viiron.googlepages.com/
+URL:		http://viron.googlepages.com/
 #BuildRequires:	-
 #Requires:	-
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
