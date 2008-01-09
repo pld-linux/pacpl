@@ -1,3 +1,4 @@
+%include	/usr/lib/rpm/macros.perl
 Summary:	Perl Audio Converter
 Summary(pl.UTF-8):	Perlowy konwerter audio
 Name:		pacpl
@@ -8,8 +9,27 @@ Group:		Applications
 Source0:	http://dl.sourceforge.net/pacpl/%{name}-%{version}.tar.bz2
 # Source0-md5:	cab1287e4fbe953652f6262130c1da0f
 URL:		http://viron.googlepages.com/
-#BuildRequires:	-
-#Requires:	-
+BuildRequires:	rpm-perlprov >= 4.1-13
+BuildRequires:	perl-Parse-RecDescent
+BuildRequires:	perl-Carp
+BuildRequires:	perl-Inline
+BuildRequires:	perl-Inline-C
+BuildRequires:	perl-Devel-Symdump
+BuildRequires:	perl-Switch
+BuildRequires:	perl-Pod-Coverage
+BuildRequires:	perl-Test-Pod-Coverage
+BuildRequires:	perl-MP3-Info
+BuildRequires:	perl-Audio-Musepack
+BuildRequires:	perl-Audio-WMA
+BuildRequires:	perl-Audio-FLAC-Header
+BuildRequires:	perl-MP3-Tag
+BuildRequires:	perl-Ogg-Vorbis-Header
+BuildRequires:	perl-IO-String
+BuildRequires:	perl-MP4-Info
+BuildRequires:	perl-Audio-APETags
+BuildRequires:	perl-CDDB_get
+#Requires::-
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
