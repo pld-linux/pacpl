@@ -2,35 +2,59 @@
 Summary:	Perl Audio Converter
 Summary(pl.UTF-8):	Perlowy konwerter audio
 Name:		pacpl
-Version:	4.0.0
+Version:	4.0.1
 Release:	0.1
 License:	GPL v3
 Group:		Applications
 Source0:	http://dl.sourceforge.net/pacpl/%{name}-%{version}.tar.bz2
-# Source0-md5:	cab1287e4fbe953652f6262130c1da0f
-URL:		http://viron.googlepages.com/
-BuildRequires:	rpm-perlprov >= 4.1-13
-BuildRequires:	perl-Parse-RecDescent
-BuildRequires:	perl-Carp
-BuildRequires:	perl-Inline
-BuildRequires:	perl-Inline-C
-BuildRequires:	perl-Devel-Symdump
-BuildRequires:	perl-Switch
-BuildRequires:	perl-Pod-Coverage
-BuildRequires:	perl-Test-Pod-Coverage
-BuildRequires:	perl-MP3-Info
+# Source0-md5:	8571cb1e431c1885aec0cee0f2911c97
+Patch0:		%{name}-po.patch
+URL:		http://viiron.googlepages.com/
+BuildRequires:	perl-Audio-FLAC-Header
 BuildRequires:	perl-Audio-Musepack
 BuildRequires:	perl-Audio-WMA
-BuildRequires:	perl-Audio-FLAC-Header
-BuildRequires:	perl-MP3-Tag
-BuildRequires:	perl-Ogg-Vorbis-Header
-BuildRequires:	perl-IO-String
-BuildRequires:	perl-MP4-Info
-BuildRequires:	perl-Audio-APETags
 BuildRequires:	perl-CDDB_get
-#Requires::-
+BuildRequires:	perl-Devel-Symdump
+BuildRequires:	perl-IO-String
+BuildRequires:	perl-Inline-C
+BuildRequires:	perl-MP3-Info
+BuildRequires:	perl-MP3-Tag
+BuildRequires:	perl-MP4-Info
+BuildRequires:	perl-Ogg-Vorbis-Header
+BuildRequires:	perl-Parse-RecDescent
+BuildRequires:	perl-Switch
+BuildRequires:	perl-Test-Pod-Coverage
+BuildRequires:	rpm-perlprov >= 4.1-13
+#Requires:
+#Suggests:???
+# checking for lame... yes
+# checking for toolame... no
+# checking for gogo... no
+# checking for bladeenc... no
+# checking for oggenc... yes
+# checking for oggdec... yes
+# checking for speexenc... no
+# checking for speexdec... no
+# checking for flac... yes
+# checking for mac... no
+# checking for shorten... no
+# checking for sox... no
+# checking for faac... no
+# checking for faad... no
+# checking for ffmpeg... no
+# checking for mplayer... yes
+# checking for la... no
+# checking for bonk... no
+# checking for mppenc... no
+# checking for mppdec... no
+# checking for ofr... no
+# checking for ofs... no
+# checking for lpac... no
+# checking for ttaenc... no
+# checking for wavpack... yes
+# checking for wvunpack... yes
 BuildArch:	noarch
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRoot:	%{tmpdir}/pacpl-%{version}-root-%(id -u -n)
 
 %description
 Perl Audio Converter is a tool for converting multiple audio types
@@ -49,6 +73,7 @@ Dolphin, and Konqueror are also provided.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 mv -f ac{local,include}.m4
@@ -60,6 +85,7 @@ mv -f ac{local,include}.m4
 %install
 rm -rf $RPM_BUILD_ROOT
 
+install -d $RPM_BUILD_ROOT%{_datadir}/apps/{amarok/scripts/pacx,{dolphin,konqueror}/servicemenus}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
@@ -69,21 +95,37 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README TODO extra
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/pacpl
 %dir %{_sysconfdir}/pacpl
+# XXX: maybe modules should go to datadir
 %dir %{_sysconfdir}/pacpl/modules
 %{_sysconfdir}/pacpl/modules/sample.m
-%{_sysconfdir}/pacpl/pacpl.conf
-%dir %{_sysconfdir}/pacpl/po
-%{_sysconfdir}/pacpl/po/de.po
-%{_sysconfdir}/pacpl/po/en_US.po
-%{_sysconfdir}/pacpl/po/es.po
-%{_sysconfdir}/pacpl/po/pl.po
-%{_sysconfdir}/pacpl/po/pt.po
-%{_sysconfdir}/pacpl/po/zh_CN.po
-%dir %{_datadir}/apps/amarok/scripts/pacx
-%{_datadir}/apps/amarok/scripts/pacx/pacx
-%{_datadir}/apps/dolphin/servicemenus/pacpl.desktop
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pacpl/pacpl.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pacpl/codecs.conf
+%dir %{_datadir}/pacpl
+%dir %{_datadir}/pacpl/po
+%lang(de) %{_datadir}/pacpl/po/de.po
+%lang(en) %{_datadir}/pacpl/po/en_US.po
+%lang(es) %{_datadir}/pacpl/po/es.po
+%lang(pl) %{_datadir}/pacpl/po/pl.po
+%lang(pt) %{_datadir}/pacpl/po/pt.po
+%lang(zh_CN) %{_datadir}/pacpl/po/zh_CN.po
+%lang(ca) %{_datadir}/pacpl/po/ca.po
+%lang(et) %{_datadir}/pacpl/po/et.po
+%lang(fr_FR) %{_datadir}/pacpl/po/fr_FR.po
+%lang(ru_RU) %{_datadir}/pacpl/po/ru_RU.po
+%lang(tr) %{_datadir}/pacpl/po/tr.po
+# mark as %dir directories provided by other packages to avoid unnecessary requires:
+%dir %{_datadir}/apps
+%dir %{_datadir}/apps/amarok
+%dir %{_datadir}/apps/amarok/scripts
+#%dir %{_datadir}/apps/amarok/scripts/pacx
+#%{_datadir}/apps/amarok/scripts/pacx/pacx
+%dir %{_datadir}/apps/dolphin
+%dir %{_datadir}/apps/dolphin/servicemenus
+#%{_datadir}/apps/dolphin/servicemenus/pacpl.desktop
+%dir %{_datadir}/apps/konqueror
+%dir %{_datadir}/apps/konqueror/servicemenus
 %{_datadir}/apps/konqueror/servicemenus/pacpl.desktop
 %{_mandir}/man1/pacpl.1*
 %{_datadir}/mimelnk/audio/x-ape.desktop
