@@ -1,0 +1,33 @@
+diff -Nur b.pacpl-4.0.1/Makefile.in n.pacpl-4.0.1/Makefile.in
+--- b.pacpl-4.0.1/Makefile.in	2008-01-05 17:05:45.000000000 +0100
++++ n.pacpl-4.0.1/Makefile.in	2008-01-22 01:37:18.000000000 +0100
+@@ -86,7 +86,7 @@
+ main:
+ 	$(INSTALL) -d $(DESTDIR)$(bindir)
+ 	$(INSTALL) -d $(DESTDIR)/etc/pacpl
+-	$(INSTALL) -d $(DESTDIR)/etc/pacpl/po
++	$(INSTALL) -d $(DESTDIR)$(datarootdir)/pacpl/po
+ 	$(INSTALL) -d $(DESTDIR)/etc/pacpl/modules
+ 	$(INSTALL) -d $(DESTDIR)$(mandir)/man1
+ 	$(INSTALL) -d $(DESTDIR)$(prefix)/doc/$(PACKAGE_NAME)-$(PACKAGE_VERSION)
+@@ -95,7 +95,7 @@
+ 	$(INSTALL) pacpl -t $(DESTDIR)$(bindir)
+ 	$(INSTALL_DATA) pacpl.conf -t $(DESTDIR)/etc/pacpl
+ 	$(INSTALL_DATA) codecs.conf -t $(DESTDIR)/etc/pacpl
+-	$(INSTALL_DATA) $(LANG_MODS) -t $(DESTDIR)/etc/pacpl/po
++	$(INSTALL_DATA) $(LANG_MODS) -t $(DESTDIR)$(datarootdir)/pacpl/po
+ 	$(INSTALL_DATA) extra/sample.m -t $(DESTDIR)/etc/pacpl/modules
+ 	$(INSTALL_DATA) pacpl.1.gz $(DESTDIR)$(mandir)/man1
+ 	$(INSTALL_DATA) $(DOCS) -t $(DESTDIR)$(prefix)/doc/$(PACKAGE_NAME)-$(PACKAGE_VERSION)
+diff -Nur b.pacpl-4.0.1/pacpl n.pacpl-4.0.1/pacpl
+--- b.pacpl-4.0.1/pacpl	2008-01-20 09:29:58.000000000 +0100
++++ n.pacpl-4.0.1/pacpl	2008-01-22 01:50:26.000000000 +0100
+@@ -130,7 +130,7 @@
+ 
+ # location of configuration file
+ my $conf_path = "/etc/pacpl";
+-my $po_dir    = "$conf_path/po";
++my $po_dir    = "/usr/share/pacpl/po"; # should be @datarootdir@/pacpl/po in pacpl.in
+ my $mod_dir   = "$conf_path/modules";
+ 
+ my $conf_file;
