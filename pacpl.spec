@@ -5,11 +5,13 @@ Name:		pacpl
 Version:	4.0.1
 Release:	0.2
 License:	GPL v3
-Group:		Applications
+Group:		Applications/Sound
 Source0:	http://dl.sourceforge.net/pacpl/%{name}-%{version}.tar.bz2
 # Source0-md5:	8571cb1e431c1885aec0cee0f2911c97
 Patch0:		%{name}-po.patch
 URL:		http://viiron.googlepages.com/
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	perl-Audio-FLAC-Header
 BuildRequires:	perl-Audio-Musepack
 BuildRequires:	perl-Audio-WMA
@@ -25,7 +27,6 @@ BuildRequires:	perl-Parse-RecDescent
 BuildRequires:	perl-Switch
 BuildRequires:	perl-Test-Pod-Coverage
 BuildRequires:	rpm-perlprov >= 4.1-13
-#Requires:
 #Suggests:???
 # checking for lame... yes
 # checking for toolame... no
@@ -69,7 +70,19 @@ support, batch conversion, tag preservation for most supported
 formats, independent tag reading/writing, and extensions for Amarok,
 Dolphin, and Konqueror are also provided.
 
-#%description -l pl.UTF-8
+%description -l pl.UTF-8
+Perl Audio Converter to narzędzie do konwersji wielu rodzajów plików
+dźwiękowych z jednego formatu do innego. Obsługuje formaty AAC, AC3,
+AIFF, APE, AU, AVR, BONK, CAF, CDR, FAP, FLA, FLAC, IRCAM, LA, LPAC,
+MAT, MAT4, MAT5, M4A, MP2, MP3, MP4, MPC, MPP, NIST, OFR, OFS, OGG,
+PAC, PAF, PVF, RA, RAM, RAW, SD2, SF, SHN, SMP, SND, SPX, TTA, VOC,
+W64, WAV, WMA oraz WV. Potrafi także konwertować dźwięk z
+następujących formatów filmów: RM, RV, ASF, DivX, MPG, MKV, MPEG, AVI,
+MOV, OGM, QT, VCD, SVCD, M4V, NSV, NUV, PSP, SMK, VOB, FLV oraz WMV.
+Dostępne są także: rippowanie płyt CD z obsługą CDDB, konwersja
+wsadowa, zachowywanie znaczników w większości z obsługiwanych
+formatów, niezależne odczytywanie i zapisywanie znaczników, a także
+rozszerzenia dla Amaroka, Dolphina i Konquerora.
 
 %prep
 %setup -q
@@ -90,6 +103,9 @@ install -d $RPM_BUILD_ROOT%{_datadir}/apps/{amarok/scripts/pacx,{dolphin,konquer
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+mv $RPM_BUILD_ROOT%{_datadir}/pacpl/po/{fr_FR,fr}.po
+mv $RPM_BUILD_ROOT%{_datadir}/pacpl/po/{ru_RU,ru}.po
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -106,15 +122,15 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/pacpl
 %dir %{_datadir}/pacpl/po
 %lang(de) %{_datadir}/pacpl/po/de.po
-%lang(en) %{_datadir}/pacpl/po/en_US.po
+%lang(en_US) %{_datadir}/pacpl/po/en_US.po
 %lang(es) %{_datadir}/pacpl/po/es.po
 %lang(pl) %{_datadir}/pacpl/po/pl.po
 %lang(pt) %{_datadir}/pacpl/po/pt.po
 %lang(zh_CN) %{_datadir}/pacpl/po/zh_CN.po
 %lang(ca) %{_datadir}/pacpl/po/ca.po
 %lang(et) %{_datadir}/pacpl/po/et.po
-%lang(fr_FR) %{_datadir}/pacpl/po/fr_FR.po
-%lang(ru_RU) %{_datadir}/pacpl/po/ru_RU.po
+%lang(fr) %{_datadir}/pacpl/po/fr.po
+%lang(ru) %{_datadir}/pacpl/po/ru.po
 %lang(tr) %{_datadir}/pacpl/po/tr.po
 # mark as %dir directories provided by other packages to avoid unnecessary requires:
 %dir %{_datadir}/apps
