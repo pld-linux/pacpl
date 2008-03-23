@@ -2,14 +2,14 @@
 Summary:	Perl Audio Converter
 Summary(pl.UTF-8):	Perlowy konwerter audio
 Name:		pacpl
-Version:	4.0.1
-Release:	0.2
+Version:	4.0.2
+Release:	1
 License:	GPL v3
 Group:		Applications/Sound
 Source0:	http://dl.sourceforge.net/pacpl/%{name}-%{version}.tar.bz2
-# Source0-md5:	8571cb1e431c1885aec0cee0f2911c97
+# Source0-md5:	f8eb681df211aba3704286a689bfdb80
 Patch0:		%{name}-po.patch
-URL:		http://viiron.googlepages.com/
+URL:		http://pacpl.sourceforge.net/	
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	perl-Audio-FLAC-Header
