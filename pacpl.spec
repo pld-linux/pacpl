@@ -3,7 +3,7 @@ Summary:	Perl Audio Converter
 Summary(pl.UTF-8):	Perlowy konwerter audio
 Name:		pacpl
 Version:	4.0.2
-Release:	1
+Release:	2
 License:	GPL v3
 Group:		Applications/Sound
 Source0:	http://dl.sourceforge.net/pacpl/%{name}-%{version}.tar.bz2
@@ -138,11 +138,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/apps/amarok/scripts
 %dir %{_datadir}/apps/amarok/scripts/pacx
 %{_datadir}/apps/amarok/scripts/pacx/pacx
-%dir %{_datadir}/apps/dolphin
-%dir %{_datadir}/apps/dolphin/servicemenus
 %{_datadir}/apps/dolphin/servicemenus/pacpl.desktop
-%dir %{_datadir}/apps/konqueror
-%dir %{_datadir}/apps/konqueror/servicemenus
 %{_datadir}/apps/konqueror/servicemenus/pacpl.desktop
 %{_mandir}/man1/pacpl.1*
 %{_datadir}/mimelnk/audio/x-ape.desktop
