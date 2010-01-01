@@ -55,7 +55,7 @@ BuildRequires:	rpm-perlprov >= 4.1-13
 # checking for wavpack... yes
 # checking for wvunpack... yes
 BuildArch:	noarch
-BuildRoot:	%{tmpdir}/pacpl-%{version}-root-%(id -u -n)
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Perl Audio Converter is a tool for converting multiple audio types
