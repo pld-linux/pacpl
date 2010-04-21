@@ -3,7 +3,7 @@ Summary:	Perl Audio Converter
 Summary(pl.UTF-8):	Perlowy konwerter audio
 Name:		pacpl
 Version:	4.0.2
-Release:	2
+Release:	3
 License:	GPL v3
 Group:		Applications/Sound
 Source0:	http://dl.sourceforge.net/pacpl/%{name}-%{version}.tar.bz2
