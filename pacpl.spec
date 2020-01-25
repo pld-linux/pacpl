@@ -1,4 +1,3 @@
-%include	/usr/lib/rpm/macros.perl
 Summary:	Perl Audio Converter
 Summary(pl.UTF-8):	Perlowy konwerter audio
 Name:		pacpl
